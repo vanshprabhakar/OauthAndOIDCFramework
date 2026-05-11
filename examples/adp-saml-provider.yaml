@@ -1,0 +1,15 @@
+provider_name: "ADP"
+slug: "adp-saml"
+protocol: "SAML"
+enabled: true
+metadata_url: "https://adp-idp.example.com/metadata"
+entity_id: "https://auth.yourcompany.com/auth/adp-saml/metadata"
+acs_url: "https://auth.yourcompany.com/auth/adp-saml/acs"
+attribute_mapping:
+  email: "mail"
+  name: "displayName"
+  first_name: "givenName"
+  last_name: "sn"
+  external_id: "employeeId"
+allowed_domains:
+  - "yourcompany.com"

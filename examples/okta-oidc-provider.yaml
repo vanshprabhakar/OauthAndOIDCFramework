@@ -1,0 +1,20 @@
+provider_name: "Okta"
+slug: "okta"
+protocol: "OIDC"
+enabled: true
+issuer: "https://your-company.okta.com/oauth2/default"
+client_id: "${OKTA_CLIENT_ID}"
+client_secret: "${OKTA_CLIENT_SECRET}"
+redirect_uri: "https://auth.yourcompany.com/auth/okta/callback"
+scopes:
+  - "openid"
+  - "email"
+  - "profile"
+attribute_mapping:
+  email: "email"
+  name: "name"
+  first_name: "given_name"
+  last_name: "family_name"
+  external_id: "sub"
+allowed_domains:
+  - "yourcompany.com"
