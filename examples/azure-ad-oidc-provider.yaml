@@ -1,0 +1,18 @@
+provider_name: "Azure AD"
+slug: "azure-ad"
+protocol: "OIDC"
+enabled: true
+server_metadata_url: "https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration"
+client_id: "${AZURE_CLIENT_ID}"
+client_secret: "${AZURE_CLIENT_SECRET}"
+redirect_uri: "https://auth.yourcompany.com/auth/azure-ad/callback"
+scopes:
+  - "openid"
+  - "email"
+  - "profile"
+attribute_mapping:
+  email: "preferred_username"
+  name: "name"
+  external_id: "sub"
+allowed_domains:
+  - "yourcompany.com"

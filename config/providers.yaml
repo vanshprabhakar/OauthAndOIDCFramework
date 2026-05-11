@@ -1,0 +1,49 @@
+app_name: "SAML + OIDC Auth Framework"
+public_base_url: "http://localhost:8000"
+environment: "local"
+session:
+  jwt_secret: "change-me-in-production"
+  jwt_issuer: "auth-framework"
+  cookie_name: "app_session"
+  cookie_secure: false
+  cookie_samesite: "lax"
+  expiration_minutes: 480
+  protected_path_prefixes:
+    - "/me"
+providers:
+  - provider_name: "ADP Workforce Now"
+    slug: "adp-saml"
+    protocol: "SAML"
+    enabled: false
+    metadata_url: "https://idp.example.com/adp/metadata"
+    entity_id: "http://localhost:8000/auth/adp-saml/metadata"
+    acs_url: "http://localhost:8000/auth/adp-saml/acs"
+    attribute_mapping:
+      email: "mail"
+      name: "displayName"
+      first_name: "givenName"
+      last_name: "sn"
+      external_id: "employeeId"
+    allowed_domains:
+      - "example.com"
+
+  - provider_name: "Google Workspace"
+    slug: "google"
+    protocol: "OIDC"
+    enabled: false
+    issuer: "https://accounts.google.com"
+    client_id: "replace-with-client-id"
+    client_secret: "replace-with-client-secret"
+    redirect_uri: "http://localhost:8000/auth/google/callback"
+    scopes:
+      - "openid"
+      - "email"
+      - "profile"
+    attribute_mapping:
+      email: "email"
+      name: "name"
+      first_name: "given_name"
+      last_name: "family_name"
+      external_id: "sub"
+    allowed_domains:
+      - "example.com"

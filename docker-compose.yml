@@ -1,0 +1,12 @@
+services:
+  auth:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      AUTH_AUTH_CONFIG_PATH: /app/config/providers.yaml
+      AUTH_JWT_SECRET: replace-with-a-long-random-secret
+      AUTH_COOKIE_SECURE: "false"
+      AUTH_PUBLIC_BASE_URL: http://localhost:8000
+    volumes:
+      - ./config:/app/config:ro
